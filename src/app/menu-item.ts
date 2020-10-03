@@ -1,3 +1,5 @@
+import { Link } from './models';
+
 export interface MenuItem {
   scope: string;
   id: string;
@@ -8,9 +10,9 @@ export interface MenuItem {
   parent: string;
   score: string;
   image: string;
-  links: Array<string>;
+  links: Link[];
   icon?: string;
-  children?: Array<any>;
-  active?: boolean,
-  isLeaf?: boolean
+  children?: MenuItem[];
+  active?: boolean;
+  isLeaf?: boolean;
 }

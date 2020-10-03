@@ -23,7 +23,7 @@ import { Router } from '@angular/router';
   ],
 })
 export class TreeChildComponent implements OnInit {
-  @Input() node: any;
+  @Input() node: MenuItem;
   @Input() level: number;
   @Input() idx? = 0;
   @Input() tree: MenuItem;
