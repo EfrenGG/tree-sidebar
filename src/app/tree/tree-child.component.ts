@@ -54,7 +54,7 @@ export class TreeChildComponent implements OnInit {
 
   getNodeLink(): string {
     let nodeLink = this.node.links.find((link) => link.rel === 'products');
-    return nodeLink.href
+    return nodeLink.href;
   }
 
   isInChildren(menuOpt: any, menuId: string): boolean {

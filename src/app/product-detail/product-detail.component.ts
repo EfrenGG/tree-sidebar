@@ -1,39 +1,35 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Observable, Subscription } from 'rxjs';
 import { MenuItem } from '../menu-item';
-import { MenuItemsService } from '../menu-items.service';
 
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
   styleUrls: ['./product-detail.component.scss'],
 })
-export class ProductDetailComponent implements OnInit {
+export class ProductDetailComponent implements OnInit, OnDestroy {
+  private routeDataSub: Subscription;
   productsLink: string;
   products: Array<any>;
   title: string;
 
-  constructor(
-    private _route: ActivatedRoute,
-    private menuItemsService: MenuItemsService,
-    private router: Router
-  ) {}
+  constructor(private route: ActivatedRoute) {}
 
   state$: Observable<object>;
 
   ngOnInit() {
+    this.routeDataSub = this.route.data.subscribe(
+      (data: { menuOption: MenuItem }) => {
+        const { menuOption } = data;
+        console.log(menuOption);
+      }
+    );
+  }
 
-    this._route.params.subscribe((params) => {
-      console.log('Getting products', this.menuItemsService.menusCollection);
-      this.title = this._route.snapshot.paramMap.get('title');
-      this.productsLink = this._route.snapshot.paramMap.get('link');
-      this.menuItemsService.getProducts(this.productsLink).subscribe({
-        next: (data) => {
-          this.products = data.content.slice(1, 10);
-        },
-      });
-    });
+  ngOnDestroy(): void {
+    if (this.routeDataSub) {
+      this.routeDataSub.unsubscribe();
+    }
   }
 }

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 export class AppComponent implements OnInit {
   showSidebar: boolean;
 
-  constructor(private route: ActivatedRoute){}
+  constructor() {}
 
   ngOnInit() {
     this.showSidebar = true;
@@ -19,7 +18,7 @@ export class AppComponent implements OnInit {
     this.showSidebar = show;
   }
 
-  hideSidebar():void {
-    this.showSidebar = !this.showSidebar
+  hideSidebar(): void {
+    this.showSidebar = !this.showSidebar;
   }
 }

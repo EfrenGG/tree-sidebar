@@ -1,29 +1,44 @@
 <div class="menu-item">
-
-  <div class="child-name-container" (click)="handleShow(); isInChildren(tree,node.id)"
-    [ngClass]="{child: currentLevel  !== 0}">
-
-
-    <!-- Change svg component -->
+  <div
+    class="child-name-container"
+    (click)="handleShow(); isInChildren(tree, node.id)"
+    [ngClass]="{ child: currentLevel !== 0 }"
+  >
     <span *ngIf="currentLevel === 0" class="icon-container">
       <i class="menu-icon" [ngClass]="node.icon"></i>
     </span>
 
-    <span class="name fnt-bold" [style.marginLeft.px]="currentLevel * 16" [ngClass]="{ lowlevel: currentLevel !== 0 }">
-      <a *ngIf="node.isLeaf" [routerLink]="[url, {link: productsLink, title: node.name}]"
-        [state]="{ data: 'hello' }">{{ displayName }}</a>
-      <a *ngIf="!node.isLeaf">{{ displayName }}</a>
+    <span
+      class="name fnt-bold"
+      [style.marginLeft.px]="currentLevel * 16"
+      [ngClass]="{ lowlevel: currentLevel !== 0 }"
+    >
+      <a [routerLink]="node.isLeaf ? ['/products', node.id] : undefined">{{
+        displayName
+      }}</a>
     </span>
-    <span class="arrow-container" [ngClass]="{ clicked: node.active }" *ngIf="node.children">
-      <!-- <img class="arrow-svg" src="../../assets/arrow.component.svg" alt="arrow" /> -->
+    <span
+      class="arrow-container"
+      [ngClass]="{ clicked: node.active }"
+      *ngIf="node.children"
+    >
       <arrow-svg class="arrow"></arrow-svg>
     </span>
   </div>
 
-  <div class="children-container" [@slide]="node.active ? 'down' : 'up'" [ngClass]="{down: node.active}">
+  <div
+    class="children-container"
+    [@slide]="node.active ? 'down' : 'up'"
+    [ngClass]="{ down: node.active }"
+  >
     <div *ngIf="node.active" class="children">
-      <pm-tree-child *ngFor="let child of node.children; index as i" [node]="child" [level]="currentLevel" [tree]="tree"
-        [idx]="i">
+      <pm-tree-child
+        *ngFor="let child of node.children; index as i"
+        [node]="child"
+        [level]="currentLevel"
+        [tree]="tree"
+        [idx]="i"
+      >
       </pm-tree-child>
     </div>
   </div>

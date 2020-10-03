@@ -19,6 +19,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { ProductItemComponent } from './product-item/product-item.component';
 import { FooterComponent } from './footer/footer.component';
+import { MenuItemsService } from './menu-items.service';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,13 @@ import { FooterComponent } from './footer/footer.component';
     RouterModule.forRoot([
       { path: 'products', component: ProductsComponent },
       { path: 'welcome', component: WelcomeComponent },
-      { path: 'products/:id', component: ProductDetailComponent },
+      {
+        path: 'products/:id',
+        component: ProductDetailComponent,
+        resolve: {
+          menuOption: MenuItemsService,
+        },
+      },
       { path: '', redirectTo: 'welcome', pathMatch: 'full' },
     ]),
   ],
