@@ -6,11 +6,11 @@ import { MenuItemsService } from '../menu-items.service';
 import { Link, Product } from '../models';
 
 @Component({
-  selector: 'app-product-detail',
-  templateUrl: './product-detail.component.html',
-  styleUrls: ['./product-detail.component.scss'],
+  selector: 'app-product-list',
+  templateUrl: './product-list.component.html',
+  styleUrls: ['./product-list.component.scss'],
 })
-export class ProductDetailComponent implements OnInit, OnDestroy {
+export class ProductListComponent implements OnInit, OnDestroy {
   private routeDataSub: Subscription;
   private productDataSub: Subscription;
 

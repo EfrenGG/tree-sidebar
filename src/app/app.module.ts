@@ -16,7 +16,7 @@ import { SvgConfigComponent } from './navbar/svgs/configuration.component';
 import { SvgMailComponent } from './navbar/svgs/mail.component';
 import { ProductsComponent } from './products/products.component';
 import { WelcomeComponent } from './welcome/welcome.component';
-import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { ProductListComponent } from './product-list/product-list.component';
 import { ProductItemComponent } from './product-item/product-item.component';
 import { FooterComponent } from './footer/footer.component';
 import { MenuItemsService } from './menu-items.service';
@@ -33,7 +33,7 @@ import { MenuItemsService } from './menu-items.service';
     SvgMailComponent,
     ProductsComponent,
     WelcomeComponent,
-    ProductDetailComponent,
+    ProductListComponent,
     ProductItemComponent,
     FooterComponent,
   ],
@@ -46,7 +46,7 @@ import { MenuItemsService } from './menu-items.service';
       { path: 'welcome', component: WelcomeComponent },
       {
         path: 'products/:id',
-        component: ProductDetailComponent,
+        component: ProductListComponent,
         resolve: {
           menuOption: MenuItemsService,
         },
